@@ -1,0 +1,12 @@
+.mybtn {
+    background-color: "#266bf9";
+    color: "#fff";
+    display: "block";
+    font-weight: "600";
+    letter-spacing: "1px";
+    line-height: "1";
+    padding : "18px 20px";
+    text-align: "center";
+    border-radius: "0";
+
+}

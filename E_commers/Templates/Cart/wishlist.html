@@ -1,0 +1,48 @@
+{% extends "main/base.html" %}
+{% block content %}
+
+
+
+
+<div class="wishlist-container" style="padding: 15px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+    <div class="header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 10px;">
+        <span class="title" style="font-size: 1.5rem; font-weight: bold;">Wishlist</span>
+        <span class="wishlist-count" style="font-size: 1rem; color: #777;"></span>
+        <button class="offcanvas-close" style="border: none; background: none; font-size: 1.5rem; cursor: pointer;">×</button>
+    </div>
+    <div class="body customScroll" style="max-height: 400px; overflow-y: auto;">
+        {% if request.session.cart and request.session.cart|length > 0 %}
+            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                <thead>
+                    <tr style="background-color: #f2f2f2;">
+                        <th style="padding: 10px; text-align: left;">Product</th>
+                        <th style="padding: 10px; text-align: left;">Price</th>
+                        <th style="padding: 10px; text-align: left;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, value in request.session.cart.items %}
+                        <tr style="border-bottom: 1px solid #ddd;">
+                            <td style="padding: 10px; display: flex; align-items: center;">
+                                <a href="single-product.html" class="image">
+                                    <img src="{{ value.image }}" alt="Cart product Image" style="width: 60px; height: auto; margin-right: 10px;">
+                                </a>
+                                <div class="content">
+                                    <a href="single-product.html" class="title" style="text-decoration: none; color: #333;">{{ value.name | truncatewords:8 }}</a>
+                                </div>
+                            </td>
+                            <td style="padding: 10px;"><span class="amount">₹{{ value.price }}</span></td>
+                            <td style="padding: 10px;">
+                                <a href="{% url 'item_clear' key %}" class="remove" style="color: red; text-decoration: none;">Remove</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="empty-wishlist" style="text-align: center; padding: 20px; font-style: italic; color: #999;">Your wishlist is currently empty.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
