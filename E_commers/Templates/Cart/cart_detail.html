@@ -102,6 +102,7 @@
                             <div class="col-lg-4 col-md-6 mb-lm-30px">
                                 <div class="cart-tax">
                                     <div class="title-wrap">
+
                                         <h4 class="cart-bottom-title section-bg-gray">Estimate Shipping And Tax</h4>
                                     </div>
                                     <div class="tax-wrapper">
@@ -175,7 +176,7 @@
                                     <form method="post" action="{% url 'checkout' %}">
                                         {% csrf_token %}
                                         <input value="{{cart_total_amount}}00"name="amount" hidden>
-                                        <a href="checkout.html"><button type="submit" class="text-light">Proceed to Checkout</button></a>
+                                        <a href="{'cart/checkout/'}"><button type="submit" class="text-light">Proceed to Checkout</button></a>
 
                                     </form>
 
